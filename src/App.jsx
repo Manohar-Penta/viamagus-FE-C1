@@ -21,18 +21,18 @@ function App() {
           "--bg-lg-size": "100% 30%",
           backgroundAttachment: "fixed",
         }}
-        className={`flex flex-col items-center justify-center h-screen bg-no-repeat bg-[image:var(--bg-sm-image)] lg:bg-[image:var(--bg-lg-image)] bg-[length:var(--bg-sm-size)] md:bg-[length:var(--bg-lg-size)]`}
+        className={`flex flex-col items-center justify-center h-screen bg-no-repeat bg-[image:var(--bg-sm-image)] lg:bg-[image:var(--bg-lg-image)] bg-[length:var(--bg-sm-size)] lg:bg-[length:var(--bg-lg-size)]`}
       >
         <div className="rounded bg-white">
-          <div className="shadow-lg text-center p-1 md:p-2">
+          <div className="shadow-lg text-center p-1 lg:p-2">
             <img
               src="imgs/amazon.svg"
               alt="Amazon"
-              className="h-10 md:h-15 w-auto mx-auto"
+              className="h-10 lg:h-15 w-auto mx-auto"
             />
           </div>
-          <div className="w-[80%] mx-auto p-1 md:p-2">
-            <h1 className="text-2xl md:text-4xl text-my-green text-center">
+          <div className="w-[80%] mx-auto p-1 lg:p-2">
+            <h1 className="text-2xl lg:text-4xl text-my-green text-center">
               Login
             </h1>
             <picture>
@@ -42,14 +42,14 @@ function App() {
             <form
               action=""
               method="post"
-              className="m-2 md:m-4 flex flex-col gap-4"
+              className="m-2 lg:m-4 flex flex-col gap-4"
               onSubmit={(e) => {
                 e.preventDefault();
               }}
             >
               <input
                 type="email"
-                className="block border-b-2 border-b-gray-300 focus:outline-none focus:border-b-blue-400 p-1 min-w-full text-md md:text-xl"
+                className="block border-b-2 border-b-gray-300 focus:outline-none focus:border-b-blue-400 p-1 min-w-full text-md lg:text-xl"
                 placeholder="Email"
                 name="email"
                 value={email}
@@ -57,11 +57,11 @@ function App() {
                 autoComplete="off"
               />
               {!re.test(email) && (
-                <p className="text-my-error flex items-center gap-2">
+                <p className="text-my-error flex items-center gap-2 text-sm lg:text-md">
                   <img
                     src="imgs/Group 2.svg"
                     alt=""
-                    className="size-3 md:size-5"
+                    className="size-3 lg:size-5"
                   />
                   {email == ""
                     ? "The email feild is required"
@@ -70,7 +70,7 @@ function App() {
               )}
               <input
                 type="password"
-                className="block border-b-2 border-b-gray-300 focus:outline-none focus:border-b-blue-400 p-1 min-w-full text-md md:text-xl"
+                className="block border-b-2 border-b-gray-300 focus:outline-none focus:border-b-blue-400 p-1 min-w-full text-md lg:text-xl"
                 placeholder="Password"
                 name="password"
                 value={password}
@@ -78,12 +78,12 @@ function App() {
               />
               <button
                 type="submit"
-                className="block min-w-full text-white text-center rounded-full p-2 bg-my-green text-sm md:text-2xl hover:cursor-pointer"
+                className="block min-w-full text-white text-center rounded-full p-2 bg-my-green text-sm lg:text-2xl hover:cursor-pointer"
               >
                 Sign In
               </button>
             </form>
-            <div className="flex justify-between text-xs md:text-xl">
+            <div className="flex justify-between text-xs lg:text-xl">
               <a href="/">Forgot Password?</a>
               <a href="/" className="text-my-red">
                 New User? Sign Up
@@ -96,7 +96,7 @@ function App() {
                 <img
                   src="imgs/Group 9.png"
                   alt=""
-                  className="size-5 md:size-8"
+                  className="size-5 lg:size-8"
                 />
               </picture>
               <div className="mx-auto">Sign in with Google</div>
@@ -107,7 +107,7 @@ function App() {
                 <img
                   src="imgs/Rectangle 17.png"
                   alt=""
-                  className="size-5 md:size-8"
+                  className="size-5 lg:size-8"
                 />
               </picture>
               <div className="mx-auto">Sign in with Facebook</div>
