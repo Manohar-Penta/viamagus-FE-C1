@@ -7,7 +7,10 @@ import bgLg from "../public/imgs/Rectangle 1@2x.png";
 
 function App() {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(null);
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   let re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -45,6 +48,12 @@ function App() {
               className="m-2 lg:m-4 flex flex-col gap-4"
               onSubmit={(e) => {
                 e.preventDefault();
+                if (!re.test(email)) {
+                  setEmailError(true);
+                }
+                if (password.length < 8) {
+                  setPasswordError(true);
+                }
               }}
             >
               <input
@@ -53,10 +62,14 @@ function App() {
                 placeholder="Email"
                 name="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setSuccess(false);
+                  setEmailError(false);
+                }}
                 autoComplete="off"
               />
-              {!re.test(email) && (
+              {emailError && (
                 <p className="text-my-error flex items-center gap-2 text-sm lg:text-md">
                   <img
                     src="imgs/Group 2.svg"
@@ -74,8 +87,22 @@ function App() {
                 placeholder="Password"
                 name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setSuccess(false);
+                  setPasswordError(false);
+                }}
               />
+              {passwordError && (
+                <p className="text-my-error flex items-center gap-2 text-sm lg:text-md">
+                  <img
+                    src="imgs/Group 2.svg"
+                    alt=""
+                    className="size-3 lg:size-5"
+                  />
+                  Password must be at least 8 characters
+                </p>
+              )}
               <button
                 type="submit"
                 className="block min-w-full text-white text-center rounded-full p-2 bg-my-green text-sm lg:text-2xl hover:cursor-pointer"
@@ -83,6 +110,7 @@ function App() {
                 Sign In
               </button>
             </form>
+            {success && <p className="text-my-green">Successful!!</p>}
             <div className="flex justify-between text-xs lg:text-xl">
               <a href="/">Forgot Password?</a>
               <a href="/" className="text-my-red">
