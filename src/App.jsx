@@ -1,16 +1,15 @@
 import { useState } from "react";
-import rectBig from "../public/imgs/Rectangle 4@2x.png";
-import fbBig from "../public/imgs/Rectangle 17@2x.png";
-import gBig from "../public/imgs/Group 9@2x.png";
-import bgSm from "../public/imgs/Rectangle 1.png";
-import bgLg from "../public/imgs/Rectangle 1@2x.png";
+import rectBig from "/imgs/Rectangle 4@2x.png";
+import fbBig from "/imgs/Rectangle 17@2x.png";
+import gBig from "/imgs/Group 9@2x.png";
+import bgSm from "/imgs/Rectangle 1.png";
+import bgLg from "/imgs/Rectangle 1@2x.png";
 
 function App() {
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(null);
+  const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(null);
-  const [success, setSuccess] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   let re =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -27,7 +26,7 @@ function App() {
         className={`flex flex-col items-center justify-center h-screen bg-no-repeat bg-[image:var(--bg-sm-image)] lg:bg-[image:var(--bg-lg-image)] bg-[length:var(--bg-sm-size)] lg:bg-[length:var(--bg-lg-size)]`}
       >
         <div className="rounded bg-white">
-          <div className="shadow-lg text-center p-1 lg:p-2">
+          <div className="shadow-lg text-center p-1">
             <img
               src="imgs/amazon.svg"
               alt="Amazon"
@@ -46,15 +45,6 @@ function App() {
               action=""
               method="post"
               className="m-2 lg:m-4 flex flex-col gap-4"
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!re.test(email)) {
-                  setEmailError(true);
-                }
-                if (password.length < 8) {
-                  setPasswordError(true);
-                }
-              }}
             >
               <input
                 type="email"
@@ -64,7 +54,6 @@ function App() {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  setSuccess(false);
                   setEmailError(false);
                 }}
                 autoComplete="off"
@@ -89,7 +78,6 @@ function App() {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
-                  setSuccess(false);
                   setPasswordError(false);
                 }}
               />
@@ -104,13 +92,21 @@ function App() {
                 </p>
               )}
               <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!re.test(email)) {
+                    setEmailError(true);
+                  }
+                  if (password.length < 8) {
+                    setPasswordError(true);
+                  }
+                }}
                 type="submit"
                 className="block min-w-full text-white text-center rounded-full p-2 bg-my-green text-sm lg:text-2xl hover:cursor-pointer"
               >
                 Sign In
               </button>
             </form>
-            {success && <p className="text-my-green">Successful!!</p>}
             <div className="flex justify-between text-xs lg:text-xl">
               <a href="/">Forgot Password?</a>
               <a href="/" className="text-my-red">
